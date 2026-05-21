@@ -3,7 +3,9 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Timeline from './components/Timeline';
+import FAQ from './components/FAQ';
 import Contact from './components/Contact';
+import AIAssistant from './components/AIAssistant';
 
 export default function App() {
   const linkedinUrl = "https://www.linkedin.com/in/salarkhan-patan-75365a230";
@@ -31,12 +33,18 @@ export default function App() {
       {/* Tactile Experience & Achievements Timeline */}
       <Timeline />
 
+      {/* Frequently Asked Questions */}
+      <FAQ />
+
       {/* Contact Form with Confetti Feedback */}
       <Contact 
         linkedinUrl={linkedinUrl} 
         githubUrl={githubUrl} 
         resumeUrl={resumeUrl} 
       />
+
+      {/* Floating AI Conversation Agent */}
+      <AIAssistant />
     </div>
   );
 }

@@ -311,7 +311,7 @@ export default function Contact({ linkedinUrl, githubUrl, resumeUrl }: ContactPr
         {/* Footer info tag */}
         <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ios-subtext font-semibold">
           <span>&copy; {new Date().getFullYear()} Patan Salar Khan. All Rights Reserved.</span>
-          <span>Engineered with React + Three Fiber + Tailwind CSS</span>
+          
         </div>
 
       </div>
