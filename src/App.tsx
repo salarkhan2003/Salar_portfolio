@@ -3,8 +3,8 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
 import Timeline from './components/Timeline';
-import FAQ from './components/FAQ';
 import Contact from './components/Contact';
+import FAQ from './components/FAQ';
 import AIAssistant from './components/AIAssistant';
 
 export default function App() {
@@ -15,33 +15,33 @@ export default function App() {
   return (
     <div className="min-h-screen bg-ios-bg text-ios-text relative overflow-x-hidden selection:bg-ios-blue selection:text-white">
       {/* Dynamic iOS 18 Dock Navigation Bar */}
-      <Navbar 
-        linkedinUrl={linkedinUrl} 
-        githubUrl={githubUrl} 
-        resumeUrl={resumeUrl} 
+      <Navbar
+        linkedinUrl={linkedinUrl}
+        githubUrl={githubUrl}
+        resumeUrl={resumeUrl}
       />
 
-      {/* Main Interactive Hero Section (renders 3D Canvas) */}
+      {/* Main Interactive Hero Section */}
       <Hero />
 
       {/* About Me Bento Grid */}
       <About />
 
-      {/* Interactive Horizontal Scroll 3D Showcase */}
+      {/* Interactive Projects Showcase */}
       <Projects />
 
-      {/* Tactile Experience & Achievements Timeline */}
+      {/* Experience & Achievements Timeline */}
       <Timeline />
 
-      {/* Frequently Asked Questions */}
-      <FAQ />
-
-      {/* Contact Form with Confetti Feedback */}
-      <Contact 
-        linkedinUrl={linkedinUrl} 
-        githubUrl={githubUrl} 
-        resumeUrl={resumeUrl} 
+      {/* Contact Form */}
+      <Contact
+        linkedinUrl={linkedinUrl}
+        githubUrl={githubUrl}
+        resumeUrl={resumeUrl}
       />
+
+      {/* Frequently Asked Questions — last section */}
+      <FAQ />
 
       {/* Floating AI Conversation Agent */}
       <AIAssistant />
