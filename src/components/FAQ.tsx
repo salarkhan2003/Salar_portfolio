@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 
 const FAQ_ITEMS = [
@@ -43,90 +42,68 @@ export default function FAQ() {
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section id="faq" className="relative w-full py-24 px-4 md:px-8 bg-ios-bg">
-      {/* Background */}
-      <div className="absolute inset-0 w-full h-full grid-bg opacity-[0.06] pointer-events-none" />
-      <div className="glow-orb w-[500px] h-[500px] bg-ios-purple top-[-10%] right-[-10%] opacity-[0.08]" />
+    <section id="faq" className="relative w-full py-20 px-4 md:px-8 bg-ios-bg">
+      <div className="max-w-3xl mx-auto">
 
-      <div className="max-w-4xl mx-auto relative z-10">
-
-        {/* Heading */}
-        <div className="text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-4"
-          >
+        {/* Heading — simple, no scroll animation to reduce paint cost */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-4">
             <HelpCircle className="w-4 h-4 text-ios-blue" />
             <span className="text-xs font-bold text-white/80 uppercase tracking-widest">FAQ</span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-black text-white tracking-tight"
-          >
+          </div>
+          <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
             Frequently Asked Questions
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="mt-4 text-sm md:text-base font-semibold text-ios-subtext"
-          >
+          </h2>
+          <p className="mt-3 text-sm font-semibold text-ios-subtext">
             Quick answers about who I am, what I do, and how we can work together.
-          </motion.p>
+          </p>
         </div>
 
-        {/* Accordion */}
-        <div className="flex flex-col gap-3">
-          {FAQ_ITEMS.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-            >
-              <button
-                onClick={() => toggle(i)}
-                className="w-full text-left clay-card-dark rounded-2xl px-6 py-5 flex items-center justify-between gap-4 group hover:bg-white/[0.04] transition-all duration-200 border border-white/5"
+        {/* Accordion — pure CSS transitions, no Framer Motion */}
+        <div className="flex flex-col gap-2">
+          {FAQ_ITEMS.map((item, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div
+                key={i}
+                className="rounded-2xl border border-white/[0.07] bg-white/[0.03] overflow-hidden"
               >
-                <span className="text-sm md:text-base font-bold text-white group-hover:text-ios-blue transition-colors duration-200">
-                  {item.q}
-                </span>
-                <motion.div
-                  animate={{ rotate: openIndex === i ? 180 : 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="shrink-0 w-7 h-7 rounded-full bg-white/5 flex items-center justify-center"
+                {/* Question button */}
+                <button
+                  onClick={() => toggle(i)}
+                  className="w-full text-left px-5 py-4 flex items-center justify-between gap-4"
+                  aria-expanded={isOpen}
                 >
-                  <ChevronDown className="w-4 h-4 text-ios-subtext" />
-                </motion.div>
-              </button>
-
-              <AnimatePresence initial={false}>
-                {openIndex === i && (
-                  <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="overflow-hidden"
+                  <span className="text-sm md:text-base font-bold text-white">
+                    {item.q}
+                  </span>
+                  <span
+                    className="shrink-0 w-7 h-7 rounded-full bg-white/5 flex items-center justify-center"
+                    style={{
+                      transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.25s ease',
+                    }}
                   >
-                    <div className="px-6 pt-3 pb-5 text-sm font-medium text-ios-subtext leading-relaxed border-x border-b border-white/5 rounded-b-2xl -mt-2 bg-white/[0.02]">
-                      {item.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                    <ChevronDown className="w-4 h-4 text-ios-subtext" />
+                  </span>
+                </button>
+
+                {/* Answer — CSS max-height transition for zero-jank collapse */}
+                <div
+                  style={{
+                    maxHeight: isOpen ? '300px' : '0px',
+                    opacity: isOpen ? 1 : 0,
+                    overflow: 'hidden',
+                    transition: 'max-height 0.3s ease, opacity 0.25s ease',
+                  }}
+                >
+                  <p className="px-5 pb-5 text-sm font-medium text-ios-subtext leading-relaxed">
+                    {item.a}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>
