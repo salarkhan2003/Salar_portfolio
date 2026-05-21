@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Send, FileText, CheckCircle2 } from 'lucide-react';
+import { Mail, Send, FileText, CheckCircle2, Phone } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import TiltCard from './TiltCard';
 
@@ -133,15 +133,29 @@ export default function Contact({ linkedinUrl, githubUrl, resumeUrl }: ContactPr
                     Whether you want to discuss AI pipelines, autonomous hardware, edge IoT nodes, full stack web apps, or just want to connect, feel free to drop a message or reach out via socials.
                   </p>
 
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-5">
+                    {/* Direct Mail */}
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5">
+                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 shadow-inner">
                         <Mail className="w-4.5 h-4.5 text-ios-blue" />
                       </div>
                       <div>
                         <span className="text-[10px] font-bold text-ios-subtext uppercase block">Direct Mail</span>
-                        <a href="mailto:salarkhan.patan@gmail.com" className="text-sm font-extrabold text-white hover:text-ios-blue transition-colors">
-                          salarkhan.patan@gmail.com
+                        <a href="mailto:psalarkhan22@gmail.com" className="text-sm font-extrabold text-white hover:text-ios-blue transition-colors">
+                          psalarkhan22@gmail.com
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Mobile Number */}
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 shadow-inner">
+                        <Phone className="w-4.5 h-4.5 text-ios-purple" />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-bold text-ios-subtext uppercase block">Mobile Call</span>
+                        <a href="tel:+917993547438" className="text-sm font-extrabold text-white hover:text-ios-purple transition-colors">
+                          +91 7993547438
                         </a>
                       </div>
                     </div>

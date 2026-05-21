@@ -72,30 +72,52 @@ export default function About() {
           {/* Card 1: Biography (2 Columns Wide on desktop) */}
           <motion.div variants={itemVariants} className="md:col-span-2">
             <TiltCard className="h-full">
-              <div className="clay-card-dark p-8 md:p-10 flex flex-col justify-between h-full min-h-[320px]">
-                <div>
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="w-10 h-10 rounded-xl clay-card-purple flex items-center justify-center shadow-clay-purple">
-                      <Zap className="w-5 h-5 text-white" />
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-black text-white">Engineering Vision</h3>
+              <div className="clay-card-dark p-8 md:p-10 flex flex-col md:flex-row gap-8 items-center h-full min-h-[320px]">
+                
+                {/* Profile Photo (Left Side on Desktop) */}
+                <div className="w-full md:w-1/3 shrink-0 flex justify-center">
+                  <div className="relative group">
+                    {/* Glowing outer backdrop ring */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-ios-blue via-ios-purple to-ios-pink opacity-50 blur-lg group-hover:opacity-85 transition-opacity duration-300" />
+                    
+                    {/* Border overlay */}
+                    <div className="relative p-1 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-xl">
+                      <img 
+                        src="/SALAR_PROFILE_IMAGE.png" 
+                        alt="Patan Salar Khan" 
+                        className="w-40 h-40 md:w-44 md:h-44 object-cover rounded-xl shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Biography Text (Right Side on Desktop) */}
+                <div className="flex-1 flex flex-col justify-between h-full">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="w-10 h-10 rounded-xl clay-card-purple flex items-center justify-center shadow-clay-purple">
+                        <Zap className="w-5 h-5 text-white" />
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-black text-white">Engineering Vision</h3>
+                    </div>
+                    
+                    <p className="text-base font-semibold text-white/95 leading-relaxed mb-4">
+                      I am a passionate engineer operating at the convergence of hardware systems and software intelligence. I construct production-grade SaaS platforms, AI-powered tools, and safety-critical automation solutions.
+                    </p>
+                    
+                    <p className="text-xs md:text-sm font-medium text-ios-subtext leading-relaxed">
+                      By combining electrical engineering principles with modern full-stack web and mobile development architectures, I bridge the gap between cyber-physical hardware nodes and cloud interfaces.
+                    </p>
                   </div>
                   
-                  <p className="text-base md:text-lg font-medium text-white/95 leading-relaxed mb-6">
-                    I am a passionate engineer operating at the convergence of hardware systems and software intelligence. I construct production-grade SaaS platforms, AI-powered tools, and safety-critical automation solutions.
-                  </p>
-                  
-                  <p className="text-sm md:text-base font-semibold text-ios-subtext leading-relaxed">
-                    By combining electrical engineering principles with modern full-stack web and mobile development architectures, I bridge the gap between cyber-physical hardware nodes and cloud interfaces.
-                  </p>
+                  <div className="mt-6 flex flex-wrap gap-1.5">
+                    <span className="text-[10px] font-bold bg-white/5 border border-white/10 rounded-full px-2.5 py-1 text-white">Full Stack</span>
+                    <span className="text-[10px] font-bold bg-white/5 border border-white/10 rounded-full px-2.5 py-1 text-white">AI/ML Models</span>
+                    <span className="text-[10px] font-bold bg-white/5 border border-white/10 rounded-full px-2.5 py-1 text-white">Cyber-Physical Systems</span>
+                    <span className="text-[10px] font-bold bg-white/5 border border-white/10 rounded-full px-2.5 py-1 text-white">Embedded Systems</span>
+                  </div>
                 </div>
-                
-                <div className="mt-8 flex flex-wrap gap-2">
-                  <span className="text-xs font-bold bg-white/5 border border-white/10 rounded-full px-3 py-1 text-white">Full Stack</span>
-                  <span className="text-xs font-bold bg-white/5 border border-white/10 rounded-full px-3 py-1 text-white">AI/ML Models</span>
-                  <span className="text-xs font-bold bg-white/5 border border-white/10 rounded-full px-3 py-1 text-white">Cyber-Physical Systems</span>
-                  <span className="text-xs font-bold bg-white/5 border border-white/10 rounded-full px-3 py-1 text-white">Embedded Systems</span>
-                </div>
+
               </div>
             </TiltCard>
           </motion.div>
