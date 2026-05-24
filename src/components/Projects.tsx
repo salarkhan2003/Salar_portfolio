@@ -100,12 +100,8 @@ export default function Projects() {
 
   return (
     <section id="projects" className="relative w-full py-24 px-4 md:px-8 bg-[#050508]">
-      {/* Background grids */}
+      {/* Background grid */}
       <div className="absolute inset-0 w-full h-full grid-bg opacity-20 pointer-events-none" />
-      
-      {/* Decorative Orbs */}
-      <div className="glow-orb w-[500px] h-[500px] bg-ios-blue top-[20%] left-[-15%] opacity-15" />
-      <div className="glow-orb w-[500px] h-[500px] bg-ios-purple bottom-[10%] right-[-15%] opacity-15" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
@@ -164,7 +160,7 @@ export default function Projects() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] as any }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
               className="w-[340px] md:w-[400px] shrink-0 snap-start"
             >
               <TiltCard className="w-full h-full">

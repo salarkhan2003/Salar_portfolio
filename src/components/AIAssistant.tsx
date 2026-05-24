@@ -151,10 +151,10 @@ Feel free to ask or pick one of the suggestions below!`;
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ type: 'spring', damping: 20, stiffness: 260 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2 }}
             className="w-[360px] sm:w-[400px] h-[550px] rounded-3xl glass-panel border border-white/10 shadow-2xl flex flex-col overflow-hidden mb-4"
           >
             
@@ -263,17 +263,12 @@ Feel free to ask or pick one of the suggestions below!`;
       </AnimatePresence>
 
       {/* Floating Toggle Button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 rounded-2xl clay-button-blue shadow-clay-blue flex items-center justify-center text-white relative group"
+        className="w-14 h-14 rounded-2xl clay-button-blue flex items-center justify-center text-white active:scale-95 transition-transform"
       >
         <MessageSquare className="w-6 h-6" />
-        
-        {/* Glow halo */}
-        <span className="absolute inset-0 rounded-2xl bg-ios-blue opacity-30 animate-ping group-hover:animate-none" />
-      </motion.button>
+      </button>
 
     </div>
   );

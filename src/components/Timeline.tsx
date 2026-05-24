@@ -60,9 +60,7 @@ export default function Timeline() {
   return (
     <section id="experience" className="relative w-full py-24 px-4 md:px-8 bg-ios-bg">
       {/* Background patterns */}
-      <div className="absolute inset-0 w-full h-full grid-bg-dense opacity-[0.06] pointer-events-none" />
-      <div className="glow-orb w-[500px] h-[500px] bg-ios-pink top-[15%] left-[-15%] opacity-5" />
-      <div className="glow-orb w-[500px] h-[500px] bg-ios-orange bottom-[15%] right-[-15%] opacity-5" />
+      <div className="absolute inset-0 w-full h-full grid-bg opacity-20 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto relative z-10">
         
@@ -119,7 +117,7 @@ export default function Timeline() {
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] as any }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="w-full pl-6 md:pl-0"
               >
                 <TiltCard className="w-full">

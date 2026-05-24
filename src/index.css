@@ -42,48 +42,37 @@
 @layer utilities {
   /* Glassmorphism Classes */
   .glass-panel {
-    background: rgba(18, 18, 24, 0.65);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(18, 18, 24, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .glass-panel-light {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .glass-panel-interactive {
-    background: rgba(18, 18, 24, 0.5);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(18, 18, 24, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.06);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background 0.2s ease, border-color 0.2s ease;
   }
 
   .glass-panel-interactive:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 122, 255, 0.15);
-    transform: translateY(-4px);
   }
 
   .glass-input {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     color: #F5F5F7;
-    transition: all 0.3s ease;
+    transition: border-color 0.2s ease;
   }
 
   .glass-input:focus {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.06);
     border-color: rgba(0, 122, 255, 0.5);
     outline: none;
-    box-shadow: 0 0 15px rgba(0, 122, 255, 0.25);
   }
 
   /* Claymorphism Classes (Dark iOS 18 tactile feel) */
@@ -91,79 +80,61 @@
     background: #121218;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.6), 
-      inset 0 2px 4px rgba(255, 255, 255, 0.08), 
-      inset 0 -8px 16px rgba(0, 0, 0, 0.7);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 
   .clay-card-blue {
     background: #0a1f3d;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-      0 20px 40px rgba(0, 122, 255, 0.25), 
-      inset 0 3px 6px rgba(255, 255, 255, 0.25), 
-      inset 0 -8px 16px rgba(0, 50, 150, 0.6);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 122, 255, 0.2);
   }
 
   .clay-card-purple {
     background: #251233;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-      0 20px 40px rgba(175, 82, 222, 0.25), 
-      inset 0 3px 6px rgba(255, 255, 255, 0.25), 
-      inset 0 -8px 16px rgba(80, 10, 120, 0.6);
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(175, 82, 222, 0.2);
+  }
+
+  .clay-card-orange {
+    background: #2a1800;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(255, 149, 0, 0.2);
+  }
+
+  .clay-card-green {
+    background: #0a2a1a;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 24px rgba(52, 199, 89, 0.2);
   }
 
   .clay-button {
     background: #1c1c24;
     border: 1px solid rgba(255, 255, 255, 0.07);
-    box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.4), 
-      inset 0 1px 2px rgba(255, 255, 255, 0.15), 
-      inset 0 -4px 8px rgba(0, 0, 0, 0.5);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.15s ease;
     cursor: pointer;
   }
 
   .clay-button:active {
-    transform: scale(0.96);
-    box-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.4), 
-      inset 0 1px 1px rgba(255, 255, 255, 0.05), 
-      inset 0 -2px 4px rgba(0, 0, 0, 0.6);
+    opacity: 0.8;
   }
 
   .clay-button-blue {
     background: #007AFF;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 
-      0 4px 12px rgba(0, 122, 255, 0.3), 
-      inset 0 1px 2px rgba(255, 255, 255, 0.4), 
-      inset 0 -4px 8px rgba(0, 50, 150, 0.6);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.15s ease;
     cursor: pointer;
   }
 
   .clay-button-blue:hover {
-    box-shadow: 
-      0 6px 16px rgba(0, 122, 255, 0.45), 
-      inset 0 1px 2px rgba(255, 255, 255, 0.5), 
-      inset 0 -4px 8px rgba(0, 50, 150, 0.5);
-    transform: translateY(-1px);
+    opacity: 0.9;
   }
 
   .clay-button-blue:active {
-    transform: scale(0.96) translateY(0);
-    box-shadow: 
-      0 2px 4px rgba(0, 122, 255, 0.2), 
-      inset 0 1px 1px rgba(255, 255, 255, 0.2), 
-      inset 0 -2px 4px rgba(0, 50, 150, 0.7);
+    opacity: 0.75;
   }
 
   /* Grid Backgrounds */
@@ -181,14 +152,20 @@
       linear-gradient(to bottom, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
   }
 
-  /* Radial glows */
+  /* Radial glows — only on non-mobile via media query */
   .glow-orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.15;
     pointer-events: none;
     z-index: 0;
+    opacity: 0.08;
+  }
+
+  @media (min-width: 768px) {
+    .glow-orb {
+      filter: blur(80px);
+      opacity: 0.12;
+    }
   }
 }
 
@@ -197,15 +174,17 @@
   display: none;
 }
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Hover tilt effect animation backup */
+/* Performance: promote sections to their own layer */
+section {
+  contain: layout style;
+}
+
+/* Disable heavy tilt on touch devices */
 .tilt-card {
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  transform-style: flat;
 }
-.tilt-card-inner {
-  transform: translateZ(20px);
-}
+

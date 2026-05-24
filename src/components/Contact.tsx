@@ -91,7 +91,6 @@ export default function Contact({ linkedinUrl, githubUrl, resumeUrl }: ContactPr
     <section id="contact" className="relative w-full py-24 px-4 md:px-8 bg-[#050508]">
       {/* Background Grids */}
       <div className="absolute inset-0 w-full h-full grid-bg opacity-15 pointer-events-none" />
-      <div className="glow-orb w-[600px] h-[600px] bg-ios-blue bottom-[-10%] left-[-10%] opacity-15" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         

@@ -8,27 +8,23 @@ export default function About() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 },
+      transition: { staggerChildren: 0.08 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any },
+      transition: { duration: 0.4 },
     },
   };
 
   return (
     <section id="about" className="relative w-full min-h-screen py-24 px-4 md:px-8 bg-ios-bg">
       {/* Background Grid */}
-      <div className="absolute inset-0 w-full h-full grid-bg-dense opacity-[0.07] pointer-events-none" />
-
-      {/* Decorative Orbs */}
-      <div className="glow-orb w-[450px] h-[450px] bg-ios-purple bottom-[15%] left-[5%] opacity-10" />
-      <div className="glow-orb w-[450px] h-[450px] bg-ios-blue top-[15%] right-[5%] opacity-10" />
+      <div className="absolute inset-0 w-full h-full grid-bg opacity-20 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
 
@@ -192,7 +188,7 @@ export default function About() {
                         <span className="text-sm font-bold text-white uppercase tracking-wider">Software Engineering</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {['React / Next.js', 'TypeScript', 'React Native & Expo', 'Node.js / Express', 'Supabase & SQL', 'Python / OpenCV', 'REST / GraphQL'].map((tech) => (
+                        {['React / Next.js', 'AI Agent', 'Full Stack Developer', 'LLM Fine Tuning', 'Mobile Application Development', 'TypeScript', 'React Native & Expo', 'Node.js / Express', 'Supabase & SQL', 'Python / OpenCV', 'REST / GraphQL'].map((tech) => (
                           <span key={tech} className="text-xs font-semibold bg-white/5 border border-white/5 hover:border-ios-blue/40 rounded-lg px-2.5 py-1.5 text-white/90 transition-all duration-200">
                             {tech}
                           </span>
