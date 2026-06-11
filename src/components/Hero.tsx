@@ -1,60 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageSquare, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
 
 export default function Hero() {
-  const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Directly sync isMuted state to video element properties without re-creating the video node
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => {
-          console.warn("Autoplay blocked or failed:", err);
-        });
-      }
-    }
-  }, [isMuted]);
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      const newMuted = !videoRef.current.muted;
-      videoRef.current.muted = newMuted;
-      setIsMuted(newMuted);
-      
-      // Explicit play trigger on user interaction to bypass mobile browser restrictions
-      videoRef.current.play().catch((err) => {
-        console.warn("Play failed after toggle:", err);
-      });
-    }
-  };
-
-  const handleVideoEnded = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play().catch((err) => {
-        console.warn("Manual loop reset failed:", err);
-      });
-    }
-  };
-
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background Video (Full Cinematic Screen) */}
       <div className="absolute inset-0 w-full h-full overflow-hidden z-[0]">
         <video
-          ref={videoRef}
+          id="hero-video"
           src="/psalarkhan_Create_a_realist.mp4"
           className="w-full h-full object-cover"
           autoPlay
           loop
           playsInline
-          muted={isMuted}
+          muted
           preload="auto"
-          onEnded={handleVideoEnded}
         />
         {/* Cinematic dark/gradient overlay for readability */}
         <div className="absolute inset-0 bg-[#050508]/35 md:bg-[#050508]/65 pointer-events-none transition-all duration-300" />
@@ -152,26 +112,6 @@ export default function Hero() {
             ))}
           </motion.div>
         </div>
-      </div>
-
-      {/* Floating Audio Control Button */}
-      <div className="absolute top-4 right-16 md:top-24 md:right-8 z-[60] flex items-center">
-        <button
-          onClick={toggleMute}
-          className="flex items-center gap-2 p-2.5 sm:px-4 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold backdrop-blur-md transition-all duration-200 active:scale-95 shadow-xl shadow-black/20"
-        >
-          {isMuted ? (
-            <>
-              <VolumeX className="w-4 h-4 text-ios-pink animate-pulse" />
-              <span className="hidden sm:inline">Enable Sound</span>
-            </>
-          ) : (
-            <>
-              <Volume2 className="w-4 h-4 text-ios-green" />
-              <span className="hidden sm:inline">Mute Sound</span>
-            </>
-          )}
-        </button>
       </div>
 
       {/* Scroll Down Indicator */}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, Menu, X } from 'lucide-react';
+import { FileText, Menu, X, Volume2, VolumeX } from 'lucide-react';
 
 const LinkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
@@ -25,6 +25,21 @@ interface NavbarProps {
 export default function Navbar({ linkedinUrl, githubUrl, resumeUrl }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+
+  const toggleMute = () => {
+    const video = document.getElementById('hero-video') as HTMLVideoElement | null;
+    if (video) {
+      const newMuted = !video.muted;
+      video.muted = newMuted;
+      setIsMuted(newMuted);
+      video.play().catch((err) => {
+        console.warn("Video play error on toggle:", err);
+      });
+    } else {
+      setIsMuted(!isMuted);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,44 +93,61 @@ export default function Navbar({ linkedinUrl, githubUrl, resumeUrl }: NavbarProp
           ))}
         </nav>
 
-        {/* Social / External Action Icons */}
-        <div className="hidden md:flex items-center gap-3">
-          <a
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full glass-panel-interactive flex items-center justify-center text-ios-subtext hover:text-ios-blue"
-            title="LinkedIn"
+        {/* Right side controls (Desktop social icons & Mobile menu controls + Mute toggle) */}
+        <div className="flex items-center gap-2 md:gap-3 pointer-events-auto">
+          {/* Mute/Unmute Audio Toggle Button */}
+          <button
+            onClick={toggleMute}
+            className="w-10 h-10 rounded-full glass-panel-interactive flex items-center justify-center text-white"
+            title={isMuted ? "Enable Sound" : "Mute Sound"}
+            aria-label="Toggle sound"
           >
-            <LinkedinIcon className="w-4.5 h-4.5" />
-          </a>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full glass-panel-interactive flex items-center justify-center text-ios-subtext hover:text-white"
-            title="GitHub"
-          >
-            <GithubIcon className="w-4.5 h-4.5" />
-          </a>
-          <a
-            href={resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="h-10 px-5 rounded-full clay-button flex items-center justify-center text-xs font-semibold text-white gap-2"
-          >
-            <FileText className="w-4 h-4" />
-            Resume
-          </a>
-        </div>
+            {isMuted ? (
+              <VolumeX className="w-5 h-5 text-ios-pink animate-pulse" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-ios-green" />
+            )}
+          </button>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden w-10 h-10 rounded-full glass-panel-interactive flex items-center justify-center text-white"
-        >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+          {/* Social / External Action Icons (Desktop Only) */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full glass-panel-interactive flex items-center justify-center text-ios-subtext hover:text-ios-blue"
+              title="LinkedIn"
+            >
+              <LinkedinIcon className="w-4.5 h-4.5" />
+            </a>
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 rounded-full glass-panel-interactive flex items-center justify-center text-ios-subtext hover:text-white"
+              title="GitHub"
+            >
+              <GithubIcon className="w-4.5 h-4.5" />
+            </a>
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="h-10 px-5 rounded-full clay-button flex items-center justify-center text-xs font-semibold text-white gap-2"
+            >
+              <FileText className="w-4 h-4" />
+              Resume
+            </a>
+          </div>
+
+          {/* Mobile Menu Button (Mobile Only) */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden w-10 h-10 rounded-full glass-panel-interactive flex items-center justify-center text-white"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer (iOS 18 Overlay style) */}
