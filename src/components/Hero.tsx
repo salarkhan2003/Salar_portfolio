@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, MessageSquare, Sparkles, Volume2, VolumeX } from 'lucide-react';
 
@@ -6,10 +6,38 @@ export default function Hero() {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Directly sync isMuted state to video element properties without re-creating the video node
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Autoplay blocked or failed:", err);
+        });
+      }
+    }
+  }, [isMuted]);
+
   const toggleMute = () => {
     if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
+      const newMuted = !videoRef.current.muted;
+      videoRef.current.muted = newMuted;
+      setIsMuted(newMuted);
+      
+      // Explicit play trigger on user interaction to bypass mobile browser restrictions
+      videoRef.current.play().catch((err) => {
+        console.warn("Play failed after toggle:", err);
+      });
+    }
+  };
+
+  const handleVideoEnded = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch((err) => {
+        console.warn("Manual loop reset failed:", err);
+      });
     }
   };
 
@@ -23,8 +51,10 @@ export default function Hero() {
           className="w-full h-full object-cover"
           autoPlay
           loop
-          muted={isMuted}
           playsInline
+          muted={isMuted}
+          preload="auto"
+          onEnded={handleVideoEnded}
         />
         {/* Cinematic dark/gradient overlay for readability */}
         <div className="absolute inset-0 bg-[#050508]/35 md:bg-[#050508]/65 pointer-events-none transition-all duration-300" />
@@ -125,7 +155,7 @@ export default function Hero() {
       </div>
 
       {/* Floating Audio Control Button */}
-      <div className="absolute top-4 right-16 md:top-24 md:right-8 z-[50] flex items-center">
+      <div className="absolute top-4 right-16 md:top-24 md:right-8 z-[60] flex items-center">
         <button
           onClick={toggleMute}
           className="flex items-center gap-2 p-2.5 sm:px-4 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold backdrop-blur-md transition-all duration-200 active:scale-95 shadow-xl shadow-black/20"
