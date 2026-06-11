@@ -27,8 +27,8 @@ export default function Hero() {
           playsInline
         />
         {/* Cinematic dark/gradient overlay for readability */}
-        <div className="absolute inset-0 bg-[#050508]/65 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-black/40 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-[#050508]/35 md:bg-[#050508]/65 pointer-events-none transition-all duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-black/20 md:via-black/40 to-transparent pointer-events-none" />
       </div>
 
       <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-ios-blue/5 blur-[120px] pointer-events-none" />
@@ -46,7 +46,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md"
+            className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-black/40 md:bg-white/5 border border-white/10 mb-6 backdrop-blur-md"
           >
             <Sparkles className="w-4 h-4 text-ios-purple" />
             <span className="text-xs font-semibold text-white/90 tracking-wide">FULL-STACK & AI/IOT ENGINEER</span>
@@ -56,7 +56,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+            className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none mb-4 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
           >
             Patan Salar <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-ios-blue via-ios-purple to-ios-pink">
@@ -115,7 +115,7 @@ export default function Hero() {
               { label: 'Grants', value: '₹14L' },
               { label: 'Awards', value: 'NASA' },
             ].map((stat) => (
-              <div key={stat.label} className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-4 text-center hover:bg-white/10 transition-colors duration-200 shadow-lg shadow-black/10">
+              <div key={stat.label} className="bg-black/40 md:bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-4 text-center hover:bg-white/10 transition-colors duration-200 shadow-lg shadow-black/10">
                 <div className="text-xl font-black text-white">{stat.value}</div>
                 <div className="text-[10px] font-bold text-ios-subtext uppercase tracking-wider mt-1">{stat.label}</div>
               </div>
