@@ -87,11 +87,13 @@ export default function Hero() {
           >
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-ios-blue via-ios-purple to-ios-pink opacity-30 blur-xl" />
             <div className="relative p-1 rounded-3xl bg-white/10 border border-white/20">
-              <img
-                src="/SALAR_PROFILE_IMAGE.png"
-                alt="Patan Salar Khan"
+              <video
+                src="/A_high_quality_cinematic_sho.mp4"
                 className="w-56 h-56 md:w-72 md:h-72 object-cover rounded-2xl"
-                loading="eager"
+                autoPlay
+                loop
+                muted
+                playsInline
               />
             </div>
           </motion.div>
