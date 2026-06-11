@@ -1,27 +1,52 @@
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
+import { ArrowRight, MessageSquare, Sparkles, Volume2, VolumeX } from 'lucide-react';
 
 export default function Hero() {
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
+
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Static gradient background — no blur, no 3D */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#050508] via-[#0a0a14] to-[#050508] pointer-events-none" />
+      {/* Background Video (Full Cinematic Screen) */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden z-[0]">
+        <video
+          ref={videoRef}
+          src="/psalarkhan_Create_a_realist.mp4"
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+        />
+        {/* Cinematic dark/gradient overlay for readability */}
+        <div className="absolute inset-0 bg-[#050508]/65 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050508] via-black/40 to-transparent pointer-events-none" />
+      </div>
+
       <div className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full bg-ios-blue/5 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-ios-purple/5 blur-[120px] pointer-events-none" />
 
       {/* Background Grid */}
-      <div className="absolute inset-0 w-full h-full grid-bg opacity-30 pointer-events-none z-[1]" />
+      <div className="absolute inset-0 w-full h-full grid-bg opacity-20 pointer-events-none z-[1]" />
 
       {/* Content Layout */}
       <div className="max-w-7xl mx-auto w-full px-4 md:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-[2]">
 
         {/* Left Side: Headline & Bio Info */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center text-left">
+        <div className="w-full lg:w-7/12 flex flex-col justify-center text-left">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6"
+            className="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md"
           >
             <Sparkles className="w-4 h-4 text-ios-purple" />
             <span className="text-xs font-semibold text-white/90 tracking-wide">FULL-STACK & AI/IOT ENGINEER</span>
@@ -31,7 +56,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none mb-4"
+            className="text-5xl md:text-7xl font-black text-white tracking-tight leading-none mb-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           >
             Patan Salar <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-ios-blue via-ios-purple to-ios-pink">
@@ -43,7 +68,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-white/5 border border-white/10 p-6 rounded-2xl mb-8 max-w-xl"
+            className="bg-white/5 border border-white/10 p-6 rounded-2xl mb-8 max-w-xl backdrop-blur-md"
           >
             <p className="text-lg md:text-xl font-bold text-white mb-2 leading-relaxed">
               Electrical Engineer
@@ -61,7 +86,7 @@ export default function Hero() {
           >
             <a
               href="#projects"
-              className="px-8 py-4 rounded-2xl bg-ios-blue text-sm font-bold text-white flex items-center gap-2 group transition-all duration-200 hover:bg-blue-500 active:scale-95"
+              className="px-8 py-4 rounded-2xl bg-ios-blue text-sm font-bold text-white flex items-center gap-2 group transition-all duration-200 hover:bg-blue-500 active:scale-95 shadow-lg shadow-ios-blue/25"
             >
               Explore Projects
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -69,7 +94,7 @@ export default function Hero() {
 
             <a
               href="#contact"
-              className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-sm font-bold text-white flex items-center gap-2 hover:bg-white/10 transition-all duration-200 active:scale-95"
+              className="px-8 py-4 rounded-2xl bg-white/5 border border-white/10 text-sm font-bold text-white flex items-center gap-2 hover:bg-white/10 transition-all duration-200 active:scale-95 backdrop-blur-sm"
             >
               <MessageSquare className="w-4 h-4 text-ios-subtext" />
               Contact Me
@@ -77,46 +102,46 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Right Side: Profile image + stats */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center gap-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-ios-blue via-ios-purple to-ios-pink opacity-30 blur-xl" />
-            <div className="relative p-1 rounded-3xl bg-white/10 border border-white/20">
-              <video
-                src="/A_high_quality_cinematic_sho.mp4"
-                className="w-56 h-56 md:w-72 md:h-72 object-cover rounded-2xl"
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
-            </div>
-          </motion.div>
-
-          {/* Quick stats */}
+        {/* Right Side: Quick stats (No profile image container since video is full screen background) */}
+        <div className="w-full lg:w-5/12 flex flex-col items-center lg:items-end justify-center">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="grid grid-cols-3 gap-3 w-full max-w-sm"
+            className="grid grid-cols-3 gap-3.5 w-full max-w-sm"
           >
             {[
               { label: 'Projects', value: '4+' },
               { label: 'Grants', value: '₹14L' },
               { label: 'Awards', value: 'NASA' },
             ].map((stat) => (
-              <div key={stat.label} className="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
+              <div key={stat.label} className="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-4 text-center hover:bg-white/10 transition-colors duration-200 shadow-lg shadow-black/10">
                 <div className="text-xl font-black text-white">{stat.value}</div>
                 <div className="text-[10px] font-bold text-ios-subtext uppercase tracking-wider mt-1">{stat.label}</div>
               </div>
             ))}
           </motion.div>
         </div>
+      </div>
+
+      {/* Floating Audio Control Button */}
+      <div className="absolute bottom-8 right-8 z-[10] flex items-center">
+        <button
+          onClick={toggleMute}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold backdrop-blur-md transition-all duration-200 active:scale-95 shadow-xl shadow-black/20"
+        >
+          {isMuted ? (
+            <>
+              <VolumeX className="w-4 h-4 text-ios-pink animate-pulse" />
+              <span>Enable Sound</span>
+            </>
+          ) : (
+            <>
+              <Volume2 className="w-4 h-4 text-ios-green" />
+              <span>Mute Sound</span>
+            </>
+          )}
+        </button>
       </div>
 
       {/* Scroll Down Indicator */}
