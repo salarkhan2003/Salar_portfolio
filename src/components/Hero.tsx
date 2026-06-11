@@ -125,20 +125,20 @@ export default function Hero() {
       </div>
 
       {/* Floating Audio Control Button */}
-      <div className="absolute top-24 right-4 md:right-8 z-[10] flex items-center">
+      <div className="absolute top-4 right-16 md:top-24 md:right-8 z-[50] flex items-center">
         <button
           onClick={toggleMute}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold backdrop-blur-md transition-all duration-200 active:scale-95 shadow-xl shadow-black/20"
+          className="flex items-center gap-2 p-2.5 sm:px-4 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold backdrop-blur-md transition-all duration-200 active:scale-95 shadow-xl shadow-black/20"
         >
           {isMuted ? (
             <>
               <VolumeX className="w-4 h-4 text-ios-pink animate-pulse" />
-              <span>Enable Sound</span>
+              <span className="hidden sm:inline">Enable Sound</span>
             </>
           ) : (
             <>
               <Volume2 className="w-4 h-4 text-ios-green" />
-              <span>Mute Sound</span>
+              <span className="hidden sm:inline">Mute Sound</span>
             </>
           )}
         </button>
