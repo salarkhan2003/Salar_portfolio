@@ -50,11 +50,11 @@ export default function Navbar({ linkedinUrl, githubUrl, resumeUrl }: NavbarProp
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 px-4 md:px-8 py-4 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 px-4 md:px-8 py-4 pointer-events-none ${
         scrolled ? 'bg-ios-bg/40 backdrop-blur-md border-b border-ios-cardBorder/30 py-3' : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between pointer-events-auto">
         {/* Name / Logo */}
         <a href="#" className="flex items-center gap-2 group">
           <span className="w-8 h-8 rounded-lg clay-card-blue flex items-center justify-center font-bold text-white text-sm shadow-clay-blue group-hover:scale-105 transition-transform duration-300">
@@ -126,7 +126,7 @@ export default function Navbar({ linkedinUrl, githubUrl, resumeUrl }: NavbarProp
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="md:hidden w-full mt-4 glass-panel rounded-2xl overflow-hidden shadow-2xl border border-ios-cardBorder"
+            className="md:hidden w-full mt-4 glass-panel rounded-2xl overflow-hidden shadow-2xl border border-ios-cardBorder pointer-events-auto"
           >
             <div className="flex flex-col p-4 gap-2">
               {navLinks.map((link) => (
